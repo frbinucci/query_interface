@@ -163,11 +163,11 @@ public class QueryInterface {
 	    			}
 	    			break;
 			    case 3:
-			    	int exit=-1;
+			    	String disp="";
 			    	do {
 				    	System.out.print("Insert a displacement (e.g. \"2.0\") and I will show you the mean consumption"
-				    			+ " of an engine of that displacement (insert 0 to exit): ");
-				    	String disp = KeyboardInput.inputString();
+				    			+ " of an engine of that displacement (type \"exit\" to exit): ");
+				    	disp = KeyboardInput.inputString();
 		    			Document dispDoc = displacement.find(eq("_id", disp)).first();
 		    			if(dispDoc!=null) {
 		    				String mean_cons = dispDoc.get("mean_consumption").toString();
@@ -176,14 +176,14 @@ public class QueryInterface {
 		    			}else {
 		    				System.out.println("There are no data associated to "+disp);
 		    			}
-			    	}while(exit!=0);
+			    	}while(!disp.equals("exit"));
 			    	break;
 			    case 4:
-			    	int ex=-1;
+			    	String cat="";
 			    	do {
 				    	System.out.print("Insert a vehicle category (e.g. \"Midsize Cars\") and I will show you the mean consumption"
 				    			+ " of that category (insert 0 to exit): ");
-				    	String cat = KeyboardInput.inputString();
+				    	cat = KeyboardInput.inputString();
 		    			Document catDoc = vehicle_category.find(eq("_id", cat)).first();
 		    			if(catDoc!=null) {
 		    				String mean_cons = catDoc.get("mean_consumption").toString();
@@ -192,7 +192,7 @@ public class QueryInterface {
 		    			}else {
 		    				System.out.println("There are no data associated to "+cat);
 		    			}
-			    	}while(ex!=0);
+			    	}while(!cat.equals("exit"));
 			    	break;
 			    case 5:
 			    	System.out.println("Which kind of timeseries do you want to generate?");
